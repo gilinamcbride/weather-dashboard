@@ -11,16 +11,25 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Codystar&family=Truculenta:opsz,wght@12..72,100;12..72,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
     <header class="mx-0 py-2">
       <h1 class="text-center">Weather Dashboard</h1>
     </header>
+    <!-- main includes all parts of page after header -->
     <main class="container">
       <div class="row">
+        <!-- section includes search form and recent searches buttons(dynamically created) -->
         <section class="col-12 col-sm-3">
           <div class="search">
+            <!-- search form div -->
             <div class="card search-container">
               <h2 class="card-header title">Search for a City:</h2>
               <form id="input-form" class="card-body form-input">
@@ -35,26 +44,32 @@
                 <button type="submit" class="searchBtn">Search</button>
               </form>
             </div>
+            <!-- recent searches div -->
             <div class="recent-searches card my-2">
               <h2 class="card-header title">Recent Searches</h2>
               <div id="search-buttons"></div>
             </div>
           </div>
         </section>
+        <!-- section includes current weather and the forecast -->
         <section class="col-12 col-sm-9 current-future">
+          <!-- current weather div -->
           <div class="current-weather-container">
             <h2 class="card-header title">Current Weather</h2>
             <div class="card">
               <div id="current-weather" class="current-weather"></div>
             </div>
           </div>
+          <!-- future weather div where future weather cards are dynamically created -->
           <div class="future-weather">
-            <h2 class="title card-header">5 Day Forecast</h2>
-            <div id="future-weather-cards" class=""></div>
+            <h2 class="title card-header">6 Day Forecast</h2>
+            <div id="future-weather-cards" class="future-weather-cards"></div>
           </div>
         </section>
       </div>
     </main>
+    <!-- footer to add space below the main section -->
+    <footer></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>

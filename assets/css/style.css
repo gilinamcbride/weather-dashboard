@@ -1,14 +1,33 @@
+* {
+  font-family: "Truculenta", sans-serif;
+}
+
 body {
   background-color: #f8f3ea;
 }
 
 header {
   background-color: #254e7b;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
 header h1 {
   color: #f8f3ea;
+  font-family: "Codystar", cursive;
+  font-size: 45px;
 }
 
+footer {
+  padding: 50px;
+}
+
+/* applies to all card titles */
+.title {
+  color: #254e7b;
+  background-color: #85c1e5;
+  font-size: 40px;
+}
+
+/* search form styles */
 .search-container {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
@@ -24,19 +43,23 @@ header h1 {
   margin: 15px 0;
   border: #254e7b solid 1px;
   color: #254e7b;
+  font-size: 30px;
 }
 
 .form-input {
   width: 100%;
   padding: 10px;
   background-color: #cbe2ef;
+  font-size: 30px;
 }
 
 .form {
   width: 100%;
   padding: 10p 0x;
 }
+/* end search form styles */
 
+/* recent searches styles */
 .recent-searches {
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
   background-color: #cbe2ef;
@@ -48,8 +71,11 @@ header h1 {
   border: #254e7b solid 1px;
   color: #254e7b;
   padding: 15px 0px;
+  font-size: 30px;
 }
+/* end recent search styles */
 
+/* current weather styles */
 .current-weather-container {
   margin-top: 30px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
@@ -57,14 +83,9 @@ header h1 {
 
 .current-weather {
   padding: 10px;
-  font-size: 20px;
+  font-size: 30px;
   background-color: #cbe2ef;
   color: #254e7b;
-}
-
-.title {
-  color: #254e7b;
-  background-color: #85c1e5;
 }
 
 .location-title {
@@ -72,40 +93,23 @@ header h1 {
   padding-bottom: 5px;
   border-bottom: #254e7b solid 1px;
   margin-bottom: 20px;
-}
-
-.future-weather {
-  margin-top: 30px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-  background-color: #cbe2ef;
-}
-
-#future-weather-cards {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.future {
-  background-color: #254e7b;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
-  color: #f8f3ea;
-  margin: 10px;
-  font-size: 20px;
-  padding: 10px;
-  text-align: center;
+  font-size: 35px;
 }
 
 .uv-index {
   display: flex;
   flex: wrap;
   justify-content: flex-start;
-  /* padding: 10px; */
 }
 
 .index {
   width: 10%;
   text-align: center;
-  /* margin: 5px; */
+  border-radius: 10px;
+}
+
+.index-title {
+  margin-right: 10px;
 }
 
 .good {
@@ -121,3 +125,31 @@ header h1 {
   background-color: red;
   color: white;
 }
+/* current weather styles end */
+
+/* future weather styles */
+.future-weather {
+  margin-top: 30px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  background-color: #cbe2ef;
+}
+
+.future-title {
+  font-size: 35px;
+}
+
+.future-weather-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.future {
+  background-color: #254e7b;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  color: #f8f3ea;
+  margin: 10px;
+  font-size: 30px;
+  padding: 10px;
+  text-align: center;
+}
+/* future styles end */
