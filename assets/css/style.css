@@ -1,27 +1,123 @@
+body {
+  background-color: #f8f3ea;
+}
+
 header {
-  background-color: #fa8bff;
-  background-image: linear-gradient(
-    45deg,
-    #fa8bff 15%,
-    #2bd2ff 52%,
-    #2bff88 90%
-  );
+  background-color: #254e7b;
+}
+header h1 {
+  color: #f8f3ea;
+}
+
+.search-container {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search {
+  width: 100%;
+  margin-top: 30px;
 }
 
 .searchBtn {
   width: 100%;
   background-color: none;
   margin: 15px 0;
-  border: black solid 1px;
-  color: black;
+  border: #254e7b solid 1px;
+  color: #254e7b;
 }
 
 .form-input {
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
+  background-color: #cbe2ef;
+}
+
+.form {
+  width: 100%;
+  padding: 10p 0x;
+}
+
+.recent-searches {
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  background-color: #cbe2ef;
+}
+
+.recent-search-btn {
+  margin: 10px;
+  width: 90%;
+  border: #254e7b solid 1px;
+  color: #254e7b;
+  padding: 15px 0px;
+}
+
+.current-weather-container {
+  margin-top: 30px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
 }
 
 .current-weather {
   padding: 10px;
+  font-size: 20px;
+  background-color: #cbe2ef;
+  color: #254e7b;
+}
+
+.title {
+  color: #254e7b;
+  background-color: #85c1e5;
+}
+
+.location-title {
+  color: #254e7b;
+  padding-bottom: 5px;
+  border-bottom: #254e7b solid 1px;
+  margin-bottom: 20px;
+}
+
+.future-weather {
+  margin-top: 30px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  background-color: #cbe2ef;
+}
+
+#future-weather-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.future {
+  background-color: #254e7b;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+  color: #f8f3ea;
+  margin: 10px;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.uv-index {
+  display: flex;
+  flex: wrap;
+  justify-content: flex-start;
+  /* padding: 10px; */
+}
+
+.index {
+  width: 10%;
+  text-align: center;
+  /* margin: 5px; */
+}
+
+.good {
+  background: green;
+  color: white;
+}
+
+.medium {
+  background-color: yellow;
+}
+
+.bad {
+  background-color: red;
+  color: white;
 }
