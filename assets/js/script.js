@@ -4,28 +4,40 @@ var futureWeatherEl = document.querySelector("#future-weather-cards");
 var cityInputEl = document.querySelector("#city-input");
 var cityFormEl = document.querySelector("#input-form");
 var recentSearchEl = document.querySelector("#search-buttons");
-var recentSearchBtn;
+var clearSearchEl = document.querySelector("#clear-search");
 var searchArray = [];
+var btn;
 
 //function that retrieves locally stored data and creates buttons to the page for the data
 var getRecentSearch = function () {
-  var search = JSON.parse(localStorage.getItem("city"));
-  for (var i = 0; i < search.length; i++) {
-    buttonName = search[i];
+  recentSearchEl.innerHTML = "";
+  for (var i = searchArray.length - 1; i >= 0; i--) {
+    var recentSearchBtn = document.createElement("button");
+    recentSearchBtn.setAttribute("type", "button");
+    recentSearchBtn.classList.add("recent-search-btn", "btn-history");
+    recentSearchBtn.setAttribute("data-search", searchArray[i]);
+    recentSearchBtn.textContent = searchArray[i];
+    recentSearchEl.appendChild(recentSearchBtn);
   }
-  var recentSearchBtn = document.createElement("button");
-  recentSearchBtn.textContent = buttonName;
-  recentSearchBtn.setAttribute("type", "submit");
-  recentSearchBtn.className = "recent-search-btn";
-  recentSearchEl.appendChild(recentSearchBtn);
-  // recentSearchBtn.addEventListener(
-  //   "click",
-  //   getCoordinates(recentSearchBtn.text())
-  // );
 };
+// recentSearchBtn.addEventListener(
+//   "click",
+//   getCoordinates()
+// );
+
+function initGetSearch() {
+  var search = localStorage.getItem("city");
+  if (search) {
+    searchArray = JSON.parse(search);
+  }
+  getRecentSearch();
+}
 
 //function to save the city searches to local storage
 var saveSearch = function (city) {
+  if (searchArray.indexOf(city) !== -1) {
+    return;
+  }
   searchArray.push(city);
   localStorage.setItem("city", JSON.stringify(searchArray));
   getRecentSearch();
@@ -34,7 +46,7 @@ var saveSearch = function (city) {
 //function that listens for form submit
 var submitForm = function (event) {
   event.preventDefault();
-  futureWeatherEl.textContent = "";
+
   var cityInput = cityInputEl.value.trim();
   var city = cityInput.toLowerCase();
   if (city) {
@@ -106,6 +118,9 @@ var getWeather = function (latitude, longitude) {
 var displayCurrentWeather = function (weatherObj) {
   currentWeatherEl.textContent = "";
   var location = cityInputEl.value.trim();
+  if (!location) {
+    var location = btn.getAttribute("data-search");
+  }
   var date = moment().format("MMM DD, YYYY");
   var temp = weatherObj.current.temp;
   var wind = weatherObj.current.wind_speed;
@@ -115,6 +130,7 @@ var displayCurrentWeather = function (weatherObj) {
 
   var dateLocationEl = document.createElement("h3");
   dateLocationEl.textContent = location + " - " + date;
+  // dateLocationEl.textContent = `${location} (${date})`;
   dateLocationEl.className = "location-title";
   currentWeatherEl.appendChild(dateLocationEl);
   cityInputEl.value = "";
@@ -159,6 +175,7 @@ var displayCurrentWeather = function (weatherObj) {
 
 //function to display future weather information
 var displayFutureWeather = function (weatherObj) {
+  futureWeatherEl.textContent = "";
   var dailyArray = weatherObj.daily;
   for (var i = 0; i < 6; i++) {
     var temp = dailyArray[i].temp.day;
@@ -195,3 +212,15 @@ var displayFutureWeather = function (weatherObj) {
     divEl.appendChild(humidityEl);
   }
 };
+
+function searchHistoryClick(e) {
+  if (!e.target.matches(".btn-history")) {
+    return;
+  }
+  btn = e.target;
+  var location = btn.getAttribute("data-search");
+  getCoordinates(location);
+}
+
+initGetSearch();
+recentSearchEl.addEventListener("click", searchHistoryClick);

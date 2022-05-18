@@ -73,6 +73,16 @@ footer {
   padding: 15px 0px;
   font-size: 30px;
 }
+
+.clear-search-btn {
+  margin: 10px;
+  width: 90%;
+  border: #254e7b solid 1px;
+  background-color: #254e7b;
+  padding: 15px 0px;
+  font-size: 30px;
+  color: #f8f3ea;
+}
 /* end recent search styles */
 
 /* current weather styles */
