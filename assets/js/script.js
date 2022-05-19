@@ -167,7 +167,7 @@ var displayFutureWeather = function (weatherObj) {
     divEl.appendChild(tempEl);
 
     var windEl = document.createElement("p");
-    windEl.textContent = "Speed: " + Math.floor(wind) + " MPH";
+    windEl.textContent = "Wind Speed: " + Math.floor(wind) + " MPH";
     divEl.appendChild(windEl);
 
     var humidityEl = document.createElement("p");
@@ -196,7 +196,7 @@ function initGetSearch() {
 }
 
 //function to loop through local storage array and create buttons to the page for the data
-var getRecentSearch = function () {
+function getRecentSearch() {
   recentSearchEl.innerHTML = "";
   for (var i = searchArray.length - 1; i >= 0; i--) {
     var recentSearchBtn = document.createElement("button");
@@ -206,7 +206,7 @@ var getRecentSearch = function () {
     recentSearchBtn.textContent = searchArray[i];
     recentSearchEl.appendChild(recentSearchBtn);
   }
-};
+}
 
 // function to show weather when recent search button is clicked
 function searchHistoryClick(e) {
@@ -215,7 +215,7 @@ function searchHistoryClick(e) {
   }
   btn = e.target;
   var location = btn.getAttribute("data-search");
-  getCoordinates(location);
+  getLocationArray(location);
 }
 
 //call function to get local storage on page from the start
