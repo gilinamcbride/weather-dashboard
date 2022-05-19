@@ -8,41 +8,6 @@ var clearSearchEl = document.querySelector("#clear-search");
 var searchArray = [];
 var btn;
 
-//function that retrieves locally stored data and creates buttons to the page for the data
-var getRecentSearch = function () {
-  recentSearchEl.innerHTML = "";
-  for (var i = searchArray.length - 1; i >= 0; i--) {
-    var recentSearchBtn = document.createElement("button");
-    recentSearchBtn.setAttribute("type", "button");
-    recentSearchBtn.classList.add("recent-search-btn", "btn-history");
-    recentSearchBtn.setAttribute("data-search", searchArray[i]);
-    recentSearchBtn.textContent = searchArray[i];
-    recentSearchEl.appendChild(recentSearchBtn);
-  }
-};
-// recentSearchBtn.addEventListener(
-//   "click",
-//   getCoordinates()
-// );
-
-function initGetSearch() {
-  var search = localStorage.getItem("city");
-  if (search) {
-    searchArray = JSON.parse(search);
-  }
-  getRecentSearch();
-}
-
-//function to save the city searches to local storage
-var saveSearch = function (city) {
-  if (searchArray.indexOf(city) !== -1) {
-    return;
-  }
-  searchArray.push(city);
-  localStorage.setItem("city", JSON.stringify(searchArray));
-  getRecentSearch();
-};
-
 //function that listens for form submit
 var submitForm = function (event) {
   event.preventDefault();
@@ -50,7 +15,7 @@ var submitForm = function (event) {
   var cityInput = cityInputEl.value.trim();
   var city = cityInput.toLowerCase();
   if (city) {
-    getCoordinates(city);
+    getLocationArray(city);
     saveSearch(cityInput);
   } else {
     alert("Please enter a city name.");
@@ -59,7 +24,7 @@ var submitForm = function (event) {
 cityFormEl.addEventListener("submit", submitForm);
 
 //function that creates geolocation array from city name the passes information to next function
-var getCoordinates = function (location) {
+var getLocationArray = function (location) {
   var geolocationApi =
     "http://api.openweathermap.org/geo/1.0/direct?q=" +
     location +
@@ -68,7 +33,7 @@ var getCoordinates = function (location) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          getLocation(data);
+          getCoordinates(data);
         });
       } else {
         alert("Error: City Not Found");
@@ -79,15 +44,15 @@ var getCoordinates = function (location) {
     });
 };
 
-//function that gets lat and long coordinates from the array
-var getLocation = function (cityArray) {
+//function that gets lat and long coordinates from the array and passes information to next function
+function getCoordinates(cityArray) {
   for (var i = 0; i < cityArray.length; i++);
   {
     var latitude = cityArray[0].lat;
     var longitude = cityArray[0].lon;
     getWeather(latitude, longitude);
   }
-};
+}
 
 //function that fetches the API using the coordinates recieved and sends to functions to display information
 var getWeather = function (latitude, longitude) {
@@ -101,7 +66,6 @@ var getWeather = function (latitude, longitude) {
     .then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
-          console.log(data);
           displayCurrentWeather(data);
           displayFutureWeather(data);
         });
@@ -130,7 +94,6 @@ var displayCurrentWeather = function (weatherObj) {
 
   var dateLocationEl = document.createElement("h3");
   dateLocationEl.textContent = location + " - " + date;
-  // dateLocationEl.textContent = `${location} (${date})`;
   dateLocationEl.className = "location-title";
   currentWeatherEl.appendChild(dateLocationEl);
   cityInputEl.value = "";
@@ -213,6 +176,39 @@ var displayFutureWeather = function (weatherObj) {
   }
 };
 
+//function to save the city searches to local storage
+function saveSearch(city) {
+  if (searchArray.indexOf(city) !== -1) {
+    return;
+  }
+  searchArray.push(city);
+  localStorage.setItem("city", JSON.stringify(searchArray));
+  getRecentSearch();
+}
+
+//function to get information from local storage
+function initGetSearch() {
+  var search = localStorage.getItem("city");
+  if (search) {
+    searchArray = JSON.parse(search);
+  }
+  getRecentSearch();
+}
+
+//function to loop through local storage array and create buttons to the page for the data
+var getRecentSearch = function () {
+  recentSearchEl.innerHTML = "";
+  for (var i = searchArray.length - 1; i >= 0; i--) {
+    var recentSearchBtn = document.createElement("button");
+    recentSearchBtn.setAttribute("type", "button");
+    recentSearchBtn.classList.add("recent-search-btn", "btn-history");
+    recentSearchBtn.setAttribute("data-search", searchArray[i]);
+    recentSearchBtn.textContent = searchArray[i];
+    recentSearchEl.appendChild(recentSearchBtn);
+  }
+};
+
+// function to show weather when recent search button is clicked
 function searchHistoryClick(e) {
   if (!e.target.matches(".btn-history")) {
     return;
@@ -222,5 +218,8 @@ function searchHistoryClick(e) {
   getCoordinates(location);
 }
 
+//call function to get local storage on page from the start
 initGetSearch();
+
+//function to listen for click on recent search buttons
 recentSearchEl.addEventListener("click", searchHistoryClick);
