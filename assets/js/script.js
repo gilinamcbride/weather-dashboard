@@ -26,7 +26,7 @@ cityFormEl.addEventListener("submit", submitForm);
 //function that creates geolocation array from city name the passes information to next function
 var getLocationArray = function (location) {
   var geolocationApi =
-    "http://api.openweathermap.org/geo/1.0/direct?q=" +
+    "https://api.openweathermap.org/geo/1.0/direct?q=" +
     location +
     "&limit=1&appid=be7c6540adf0957dc646903e1ce56c09";
   fetch(geolocationApi)
