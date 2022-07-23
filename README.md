@@ -33,4 +33,4 @@ APIs Used:
 ![screenshot of application before](./assets/images/before.png)
 ![screenshot of application after](./assets/images/functional.png)
 
-[Link to deployed application](https://gilinamcbride.github.io/challenge6-weather-dashboard/)
+[Link to deployed application](https://gilinamcbride.github.io/weather-dashboard/)
