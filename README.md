@@ -1,5 +1,12 @@
 # Challenge 6 Weather Dashboard
 
+## Table of Contents
+
+- [User Story](#user-story)
+- [Acceptance Criteria](#acceptance-criteria)
+- [Application](#application)
+- [Questions](#questions)
+
 ## User Story
 
 - AS A traveler
@@ -20,7 +27,7 @@
 - WHEN I click on a city in the search history
 - THEN I am again presented with current and future conditions for that city
 
-## My Application
+## Application
 
 APIs Used:
 
@@ -34,3 +41,7 @@ APIs Used:
 ![screenshot of application after](./assets/images/functional.png)
 
 [Link to deployed application](https://gilinamcbride.github.io/weather-dashboard/)
+
+## Questions?
+
+For any questions, please email gilinamcbride@gmail.com, or visit any other projects on [Github](github.com/gilinamcbride).
